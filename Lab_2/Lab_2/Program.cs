@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Lab_2
 {
@@ -65,10 +66,66 @@ namespace Lab_2
             // Упаковка
             object data = intNum;
             // Распаковка
-            intNum = data;
+            intNum = (int)data;
+            dynamic attention = 10;
+            attention = "hello";
+            Console.WriteLine(attention);
+            
+            int? i = 10; // или Nullable<int> i
 
+            if(i.HasValue)
+            {
+                Console.WriteLine(i.Value);
+            }
+            else
+            {
+                Console.WriteLine("No value");
+            }
             #endregion
-
+            #region Строки
+            string str1 = "word";
+            string str2 = "word 111";
+            Console.WriteLine(str1.CompareTo(str2));
+            Console.WriteLine(str2.Contains(str1));
+            Console.WriteLine(string.Concat(str1, str2));
+            str1 = string.Copy(str2);
+            Console.WriteLine(str1);
+            Console.WriteLine(str1.Substring(2));
+            var words = str2.Split(' ');
+            foreach (var word in words)
+            {
+                Console.WriteLine(word);
+            }
+            Console.WriteLine(str1.Insert(1,"inserted"));
+            Console.WriteLine(str2.Remove(4));
+            Console.WriteLine("{0} {1}", str1, str2);
+            Console.WriteLine($"{str1} {str2}");
+            string emptyStr = null;
+            if (string.IsNullOrEmpty(emptyStr))
+            {
+                Console.WriteLine("This str is empty");
+            }
+            var newStr = new StringBuilder("hello ", 255);
+            newStr.Remove(2, 1);
+            newStr.Insert(0, "hi ");
+            newStr.Append("bye");
+            Console.WriteLine(newStr);
+            #endregion
+            #region Массивы
+            int[,] array = new int [3,3];
+            var rnd = new Random();
+            var rowSize = array.GetUpperBound(0) + 1;
+            var collumnSize = array.Length / rowSize;
+            for (int rowIdx = 0; rowIdx < rowSize; rowIdx++)
+            {
+                for (int collumnIdx = 0; collumnIdx < collumnSize; collumnIdx++)
+                {
+                    array[rowIdx, collumnIdx] = rnd.Next(10);
+                    Console.Write($"{array[rowIdx, collumnIdx]} ");
+                }
+                Console.WriteLine();
+            }
+            #endregion
 
             _ = Console.ReadKey();
         }
